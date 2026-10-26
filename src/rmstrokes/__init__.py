@@ -4,7 +4,7 @@ SVG/vector shapes to pen strokes (hatch fill, outlines, one compact cluster per 
 layer API and .rmdoc writer, tokens, write-in fields, parameter schemas, templates as data,
 recipes and the intro page.
 """
-__version__ = "0.1.0"  # x-release-please-version
+__version__ = "0.1.1"  # x-release-please-version
 
 from .devices import DEVICES, Device, device_key, get_device
 from .fields import FieldStyle, WriteIn, draw_write_in

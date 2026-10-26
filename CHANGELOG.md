@@ -4,6 +4,13 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Before `1.0.0`, any minor release may contain breaking changes.
 
+## [0.1.1](https://github.com/marcinkevicius/rmstrokes/compare/v0.1.0...v0.1.1) (2026-10-26)
+
+
+### Fixed
+
+* install from PyPI, with PNG previews in the preview extra ([198a172](https://github.com/marcinkevicius/rmstrokes/commit/198a17279e09deca5670589cc956e872cf8b2a54))
+
 ## [0.1.0](https://github.com/marcinkevicius/rmstrokes/releases/tag/v0.1.0) (2026-10-26)
 
 The first public release.
