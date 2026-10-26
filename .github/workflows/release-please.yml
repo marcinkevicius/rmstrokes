@@ -1,7 +1,8 @@
 name: Release
 
 # release-please keeps a release PR open with the next version and changelog, built from
-# Conventional Commit titles on main. Merging that PR tags vX.Y.Z and creates the GitHub Release.
+# Conventional Commit titles on main. Merging that PR tags vX.Y.Z and creates the GitHub Release;
+# the same run then builds the release and publishes it to PyPI.
 on:
   push:
     branches: [main]
@@ -20,8 +21,38 @@ jobs:
       contents: write
       pull-requests: write
       issues: write
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
     steps:
       - uses: googleapis/release-please-action@v4
+        id: release
         with:
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
+
+  pypi:
+    needs: release-please
+    if: needs.release-please.outputs.release_created == 'true'
+    runs-on: ubuntu-latest
+    # PyPI trusted publishing: no API token; PyPI trusts this workflow and environment.
+    environment:
+      name: pypi
+      url: https://pypi.org/project/rmstrokes/
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.release-please.outputs.tag_name }}
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@v6
+      - name: Build
+        run: uv build
+      - name: Check the version matches the tag
+        env:
+          TAG: ${{ needs.release-please.outputs.tag_name }}
+        run: ls dist/rmstrokes-"${TAG#v}"-py3-none-any.whl dist/rmstrokes-"${TAG#v}".tar.gz
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1

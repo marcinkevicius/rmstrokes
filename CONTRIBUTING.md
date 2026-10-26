@@ -63,4 +63,5 @@ An example is a recipe, a template file or a folder in `examples/`. Say in a com
 ## Releases
 
 Releases are made with [release-please](https://github.com/googleapis/release-please): it keeps a release PR open with
-the next version and changelog, and merging it tags the release. Before `1.0.0`, a minor version may change the API.
+the next version and changelog, and merging it tags the release and publishes it to PyPI. Before `1.0.0`, a minor
+version may change the API.
