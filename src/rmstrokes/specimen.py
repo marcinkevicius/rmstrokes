@@ -420,7 +420,7 @@ def write_png(doc: Document, out: Path, page: int = 0) -> Path:
     try:
         import pypdfium2 as pdfium
     except ImportError:
-        raise ValueError("PNG previews need pypdfium2 (pip install pypdfium2), or pass --no-png") from None
+        raise ValueError('PNG previews need pypdfium2 (pip install "rmstrokes[preview]"), or pass --no-png') from None
     pdf = pdfium.PdfDocument(doc.render_pdf(print_strokes=True))
     try:
         image = pdf[page].render(scale=1 / doc.device.pt_per_px).to_pil().convert("RGB")

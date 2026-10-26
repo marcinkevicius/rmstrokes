@@ -282,7 +282,7 @@ def _pdf_png(pdf: bytes, device: Device, size: tuple[int, int]) -> Image.Image:
     try:
         import pypdfium2 as pdfium
     except ImportError:
-        raise ValueError("the explainer's pictures need pypdfium2 (pip install pypdfium2)") from None
+        raise ValueError('the explainer\'s pictures need pypdfium2: pip install "rmstrokes[preview]"') from None
     doc = pdfium.PdfDocument(pdf)
     try:
         image = doc[0].render(scale=1 / device.pt_per_px).to_pil().convert("RGB")

@@ -27,6 +27,9 @@ dependencies = [
     "numpy>=1.26",
 ]
 
+[project.optional-dependencies]
+preview = ["pypdfium2>=4.30"]   # PNG previews: rmstrokes explain, specimen, the gallery's pictures
+
 [project.urls]
 Homepage = "https://github.com/marcinkevicius/rmstrokes"
 Source = "https://github.com/marcinkevicius/rmstrokes"

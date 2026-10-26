@@ -538,6 +538,11 @@ dependencies = [
     { name = "svgelements" },
 ]
 
+[package.optional-dependencies]
+preview = [
+    { name = "pypdfium2" },
+]
+
 [package.dev-dependencies]
 dev = [
     { name = "pillow" },
@@ -550,11 +555,13 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "numpy", specifier = ">=1.26" },
+    { name = "pypdfium2", marker = "extra == 'preview'", specifier = ">=4.30" },
     { name = "reportlab", specifier = ">=4.2" },
     { name = "rmscene", specifier = "==0.8.0" },
     { name = "shapely", specifier = ">=2.0" },
     { name = "svgelements", specifier = ">=1.9.6" },
 ]
+provides-extras = ["preview"]
 
 [package.metadata.requires-dev]
 dev = [
