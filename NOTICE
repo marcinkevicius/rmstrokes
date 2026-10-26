@@ -1,0 +1,14 @@
+rmstrokes
+Copyright 2026 Alexander Marcinkevicius and the rmstrokes contributors
+
+This software is licensed under the MIT License (see LICENSE).
+
+It bundles third-party files under their own licences, listed with sources and hashes in ATTRIBUTION.md:
+- Atkinson Hyperlegible Next (src/rmstrokes/fonts/), SIL Open Font License 1.1, unmodified; the licence
+  text is next to the fonts.
+- Open Peeps parts by Pablo Stanley (examples/character_mix/parts/), CC0 1.0.
+
+shapely, a dependency installed from PyPI, ships the GEOS library (LGPL-2.1) as an unmodified shared
+library in its wheels. rmstrokes uses it only through shapely; nothing of GEOS is in this repository.
+
+"reMarkable" is a trademark of reMarkable AS. This project is not affiliated with or endorsed by reMarkable.

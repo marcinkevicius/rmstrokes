@@ -1,0 +1,29 @@
+name: Bug report
+description: Something doesn't work the way the docs say
+labels: [bug]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What you did, what you expected, and what you got instead.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Command or file
+      description: The command you ran, or a small template, recipe or Python snippet.
+      placeholder: uv run rmstrokes make gaps --words sun --words rain -o out/
+      render: text
+  - type: input
+    id: setup
+    attributes:
+      label: Your setup
+      description: rmstrokes version or commit, Python version and OS, and the tablet (or "PDF only").
+      placeholder: 0.1.0, Python 3.12 on macOS, reMarkable 2
+  - type: textarea
+    id: extra
+    attributes:
+      label: Anything else?
+      description: Error output, screenshots, photos of the tablet.

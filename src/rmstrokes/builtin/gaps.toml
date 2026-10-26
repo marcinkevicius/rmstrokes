@@ -1,0 +1,96 @@
+# Fill in the gaps: a passage with gaps (runs of underscores) and a bank of word tags below it,
+# in a plain grid. Drag a word onto the gap where it belongs, or write in the gap with the pen.
+name = "gaps"
+title = "Fill in the gaps"
+description = "A passage with gaps and a bank of word tags to drag into them"
+orientation = "portrait"
+handwriting = "Notes"
+
+[params.title]
+type = "str"
+default = "Fill in the gaps"
+help = "heading printed at the top"
+
+[params.task]
+type = "str"
+default = "Drag each word into the gap where it belongs."
+help = "the line under the heading (empty: none)"
+
+[params.text]
+type = "str"
+default = "Water in lakes and seas is warmed by the ___. It turns into ___ and rises into the air. High up, the vapour cools and gathers into ___. When the drops grow heavy, they fall back down as ___."
+help = "the passage: three or more underscores make a gap; \\n starts a new line"
+
+[params.words]
+type = "list"
+default = ["clouds", "rain", "sun", "vapour"]
+help = "the word bank, in the order printed (add a word or two that don't belong to make it harder)"
+
+# Every tag is as wide as the longest word needs, and so is every gap; the bank has as many rows
+# as its words need, and the passage fills the space above it.
+[let]
+tag_w = "min(W - 32, 10 + 2.4 * longest(words))"
+tag_h = 8
+cols = "max(1, floor((W - 28 + 1.5) / (tag_w + 3.5)))"
+rows = "ceil(len(words) / cols)"
+bank_h = "rows * (tag_h + 2) + (rows - 1) * 1.5"
+bank_y = "H - 12 - bank_h"
+
+[intro]
+title = "Filling the gaps"
+thing = "word"
+steps = [
+  "Read the passage; each line in it is a gap.",
+  "Lasso a word and drag it onto its gap.",
+  "Or write in the gaps with the pen, and keep the words as hints.",
+]
+
+[[background]]
+type = "text"
+text = "{title}"
+x = 14
+y = 20
+size = 7
+max_w = "W - 28"
+
+[[background]]
+type = "text"
+text = "{task}"
+font = "italic"
+x = 14
+y = 28
+size = 3.6
+max_w = "W - 28"
+
+[[background]]
+type = "passage"
+text = "{text}"
+x = 14
+y = 34
+w = "W - 28"
+h = "bank_y - 10 - 34"
+size = 4.4
+leading = "tag_h + 4"
+blank = "tag_w + 1"
+
+[tokens.word]
+shape = "rounded"
+size = "tag_w"
+height = "tag_h"
+label = "{item}"
+
+[[trays]]
+name = "bank"
+token = "word"
+count = "len(words)"
+labels = "{words}"
+x = 14
+y = "bank_y"
+w = "W - 28"
+h = "bank_h"
+columns = "cols"
+label = "Words"
+
+[[layers]]
+name = "Words"
+trays = ["bank"]

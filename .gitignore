@@ -1,0 +1,70 @@
+# Dependencies & environments
+.venv/
+venv/
+env/
+.pnp*
+vendor/
+node_modules/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+
+# Build output
+dist/
+build/
+.build/
+out/
+target/
+.turbo/
+.next/
+.vite/
+*.whl
+*.tar.gz
+*.tsbuildinfo
+*.o
+*.so
+*.dylib
+*.app
+
+# Generated documents: the examples write into out/, the gallery into ~/rmstrokes-gallery/
+output/
+specimen/
+*.rmdoc
+*.zip
+*.pdf
+
+# Fonts: only the bundled, documented ones (ATTRIBUTION.md) are tracked
+*.ttf
+*.otf
+*.woff
+*.woff2
+!src/rmstrokes/fonts/*.ttf
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+
+# OS & editor
+.DS_Store
+._*
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/
+
+# Logs, caches, coverage
+*.log
+logs/
+coverage/
+.coverage
+htmlcov/
+.nyc_output/

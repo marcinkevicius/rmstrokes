@@ -1,0 +1,71 @@
+[project]
+name = "rmstrokes"
+dynamic = ["version"]
+description = "reMarkable documents with a PDF background and movable pen strokes: SVG to strokes, layers, tokens, trays, templates and recipes -> .rmdoc"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE", "NOTICE", "src/rmstrokes/fonts/OFL-*.txt"]
+authors = [{ name = "Alexander Marcinkevicius" }]
+keywords = ["remarkable", "rmdoc", "e-ink", "pdf", "pen strokes", "templates"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Multimedia :: Graphics :: Presentation",
+]
+requires-python = ">=3.11"
+dependencies = [
+    "reportlab>=4.2",
+    "rmscene==0.8.0",
+    "shapely>=2.0",
+    "svgelements>=1.9.6",
+    "numpy>=1.26",
+]
+
+[project.urls]
+Homepage = "https://github.com/marcinkevicius/rmstrokes"
+Source = "https://github.com/marcinkevicius/rmstrokes"
+Issues = "https://github.com/marcinkevicius/rmstrokes/issues"
+Changelog = "https://github.com/marcinkevicius/rmstrokes/blob/main/CHANGELOG.md"
+
+[project.scripts]
+rmstrokes = "rmstrokes.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8", "pypdf>=5", "pypdfium2>=4.30", "pillow>=10", "ruff>=0.14"]
+
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+path = "src/rmstrokes/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/rmstrokes"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/rmstrokes", "tests", "examples", "docs", "gallery.toml", "README.md", "LICENSE", "NOTICE",
+           "ATTRIBUTION.md", "CHANGELOG.md", "CONTRIBUTING.md", "CODE_OF_CONDUCT.md", "SECURITY.md"]
+exclude = ["**/__pycache__"]
+
+[tool.ruff]
+line-length = 120
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["F", "E9", "I"]   # pyflakes, syntax errors, import order
+
+[tool.ruff.lint.isort]
+known-first-party = ["rmstrokes"]
+
+# `uv run pytest` from this folder.
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["tests"]
+addopts = "--import-mode=importlib"

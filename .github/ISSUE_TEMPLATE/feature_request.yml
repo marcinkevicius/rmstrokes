@@ -1,0 +1,16 @@
+name: Idea or feature request
+description: Something you'd like rmstrokes to do
+labels: [enhancement]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you like to make?
+      description: The page or document you have in mind, and what gets in the way today.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: How might it work?
+      description: Optional. A template file key, a CLI flag, a new shape or element…

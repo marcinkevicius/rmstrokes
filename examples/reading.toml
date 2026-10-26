@@ -1,0 +1,19 @@
+# rmstrokes build examples/reading.toml -o reading.rmdoc
+# Mixed page types in one document: a how-to page, two fill-in-the-gaps pages, then a sorting page
+# (a template file next to this recipe).
+name = "Reading practice"
+device = "rm2"
+intro = true
+
+[[pages]]
+template = "gaps"
+title = "The water cycle"
+
+[[pages]]
+template = "gaps"
+title = "At the market"
+text = "On Saturday we walked to the ___ with a big basket. We bought ___ apples, a loaf of ___ and some cheese. On the way home it started to ___, so we ran."
+words = ["bread", "market", "rain", "six", "slowly"]
+
+[[pages]]
+template = "templates/sorting.toml"

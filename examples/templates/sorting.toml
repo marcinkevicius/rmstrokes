@@ -1,0 +1,88 @@
+# A template of your own: sort words into labelled boxes. The words start in a grid below the
+# boxes, as tags to drag. Build it with
+#   rmstrokes make examples/templates/sorting.toml --groups Fruit --groups Vegetable -o sorting.pdf
+# or use it in a recipe: template = "templates/sorting.toml" (relative to the recipe).
+name = "sorting"
+title = "Sorting"
+description = "Labelled boxes and a word tag per word to sort into them"
+handwriting = "Notes"
+
+[params.title]
+type = "str"
+default = "Sort the words"
+help = "heading"
+
+[params.groups]
+type = "list"
+default = ["Fruit", "Vegetable"]
+help = "the boxes, side by side (two or three fit best)"
+
+[params.words]
+type = "list"
+default = ["apple", "carrot", "pear", "leek", "plum", "onion", "cherry", "pea"]
+help = "the words to sort, in the order printed"
+
+[let]
+tag_w = "min(W - 32, 10 + 2.4 * longest(words))"
+cols = "max(1, floor((W - 28 + 1.5) / (tag_w + 3.5)))"
+rows = "ceil(len(words) / cols)"
+bank_h = "rows * 10 + (rows - 1) * 1.5"
+box_w = "(W - 28 - (len(groups) - 1) * 4) / len(groups)"
+box_h = "H - 12 - bank_h - 10 - 32"
+
+[intro]
+title = "Sorting the words"
+thing = "word"
+steps = [
+  "Lasso a word and drag it into the box where it belongs.",
+  "Write more words in the boxes with the pen.",
+]
+
+[[background]]
+type = "text"
+text = "{title}"
+x = 14
+y = 20
+size = 7
+max_w = "W - 28"
+
+[[background]]
+type = "rect"
+repeat = "groups"
+x = "14 + i * (box_w + 4)"
+y = 32
+w = "box_w"
+h = "box_h"
+radius = 2
+color = "rule"
+
+[[background]]
+type = "text"
+repeat = "groups"
+text = "{item}"
+font = "heading"
+x = "14 + i * (box_w + 4) + 3"
+y = 39
+size = 4.4
+max_w = "box_w - 6"
+
+[tokens.word]
+shape = "rounded"
+size = "tag_w"
+height = 8
+label = "{item}"
+
+[[trays]]
+name = "words"
+token = "word"
+count = "len(words)"
+labels = "{words}"
+x = 14
+y = "H - 12 - bank_h"
+w = "W - 28"
+h = "bank_h"
+columns = "cols"
+
+[[layers]]
+name = "Words"
+trays = ["words"]

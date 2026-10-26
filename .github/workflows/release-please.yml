@@ -1,0 +1,27 @@
+name: Release
+
+# release-please keeps a release PR open with the next version and changelog, built from
+# Conventional Commit titles on main. Merging that PR tags vX.Y.Z and creates the GitHub Release.
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-please
+  cancel-in-progress: false
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+    steps:
+      - uses: googleapis/release-please-action@v4
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json

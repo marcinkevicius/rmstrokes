@@ -1,0 +1,60 @@
+name: Device report
+description: Tell us how rmstrokes output looks on your tablet (Paper Pro and Move especially)
+labels: [device-report]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Only the reMarkable 2 has been tried so far, so a report from a **Paper Pro** or **Paper Pro Move** helps a lot, whether it worked or not. Thanks!
+        Build the test document with `uv run rmstrokes make gaps --intro --device pro -o out/` (or `--device move`) and copy it to the tablet.
+  - type: dropdown
+    id: device
+    attributes:
+      label: Device
+      options:
+        - Paper Pro
+        - Paper Pro Move
+        - reMarkable 2
+    validations:
+      required: true
+  - type: input
+    id: firmware
+    attributes:
+      label: Tablet software version
+      description: Settings → General → About.
+      placeholder: 3.20.0.92
+  - type: input
+    id: command
+    attributes:
+      label: Command used
+      placeholder: uv run rmstrokes make gaps --intro --device pro -o out/
+  - type: input
+    id: version
+    attributes:
+      label: rmstrokes version or commit
+      placeholder: 0.1.0 / abc1234
+  - type: dropdown
+    id: opens
+    attributes:
+      label: Does the document open?
+      options: ["Yes", "Yes, with problems (describe below)", "No"]
+  - type: dropdown
+    id: alignment
+    attributes:
+      label: Do the strokes line up with the printed page?
+      options: ["Yes", "Slightly off", "Clearly off (scale or position)", "Can't tell"]
+  - type: dropdown
+    id: lasso
+    attributes:
+      label: Does one lasso take exactly one word tag?
+      options: ["Yes", "No, it takes several", "No, it takes part of one", "Didn't try"]
+  - type: textarea
+    id: layers
+    attributes:
+      label: What does the layers menu show?
+      description: Layer names and order, and whether the handwriting layer is there.
+  - type: textarea
+    id: notes
+    attributes:
+      label: Photos and notes
+      description: Photos of the page help a lot; colours on the Paper Pro especially.

@@ -1,0 +1,45 @@
+# The review gallery: `uv run rmstrokes gallery` (in this folder) builds everything below, plus every
+# template the registry knows with its defaults and the intro page (built-in, installed through the
+# `rmstrokes.templates` entry point group, and the template files listed here), for the rm2 and the
+# Paper Pro (--with-move: the Move too), as .rmdoc + .pdf + a PNG of the first page, with an index.html.
+# Output: ~/rmstrokes-gallery/<date>-<time>-<commit>/ (-o DIR: a new or empty folder). Format:
+# `rmstrokes gallery --help` and the docstring of src/rmstrokes/gallery.py. Paths are relative to this file.
+#
+# An installed package that adds templates shows up by itself, in a group named after each template.
+
+devices = ["rm2", "pro"]
+# "How a page is built" (rmstrokes explain), step by step, at the top of the contact sheet
+explain = ["gaps", "character-mix"]
+groups = ["design system", "templates"]
+
+# Template files that aren't installed: built with their defaults like the installed ones, and found
+# by name (file stem, _ read as -) in the entries below.
+templates = [
+  { path = "examples/templates/sorting.toml", group = "templates" },
+  { path = "examples/character_mix/character_mix.py", group = "templates" },
+]
+
+# ------------------------------------------------------------------------------------- templates
+# (gaps-default, sorting-default, character-mix-default: the built-in and the two template files)
+
+[[examples]]
+group = "templates"
+name = "gaps-market"
+title = "Fill in the gaps: five words, one that doesn't belong"
+template = "gaps"
+text = "On Saturday we walked to the ___ with a big basket. We bought ___ apples, a loaf of ___ and some cheese. On the way home it started to ___, so we ran."
+words = ["bread", "market", "rain", "six", "slowly"]
+
+[[examples]]
+group = "templates"
+name = "reading"
+title = "Reading practice (recipe)"
+recipe = "examples/reading.toml"
+
+[[examples]]
+group = "templates"
+name = "character-mix-two"
+title = "Character mix & match: two cards, heads and faces only"
+template = "character-mix"
+cards = 2
+parts = ["heads", "faces"]
