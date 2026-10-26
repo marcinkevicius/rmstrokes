@@ -4,6 +4,13 @@ All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Before `1.0.0`, any minor release may contain breaking changes.
 
+## [0.1.0](https://github.com/marcinkevicius/rmstrokes/compare/v0.1.0...v0.1.0) (2026-10-26)
+
+
+### Added
+
+* initial release of rmstrokes 0.1.0 ([d394689](https://github.com/marcinkevicius/rmstrokes/commit/d394689540748224ac28e27d019b46569da7f714))
+
 ## [Unreleased]
 
 Initial public release of rmstrokes, as `0.1.0`.
