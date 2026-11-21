@@ -50,18 +50,18 @@ put the things people move (tokens, word tags, pictures, pins) on named layers a
 
 ## Install
 
-rmstrokes isn't on PyPI yet. Install it from GitHub (Python 3.11 or later):
+Install it from PyPI (Python 3.11 or later):
 
 ```bash
-pipx install git+https://github.com/marcinkevicius/rmstrokes
-# or: uv tool install git+https://github.com/marcinkevicius/rmstrokes
+pipx install rmstrokes
+# or: uv tool install rmstrokes
 rmstrokes make gaps --intro -o gaps.rmdoc
 ```
 
 Copy `gaps.rmdoc` to the tablet, open it, pick the "Words" layer in the layers menu, lasso a word and drag it.
 
 PNG previews (`rmstrokes explain`, `specimen`, the gallery's pictures) also need pypdfium2:
-`pipx install "rmstrokes[preview] @ git+https://github.com/marcinkevicius/rmstrokes"`. To work on rmstrokes itself, see [CONTRIBUTING.md](https://github.com/marcinkevicius/rmstrokes/blob/main/CONTRIBUTING.md).
+`pipx install "rmstrokes[preview]"`. To work on rmstrokes itself, see [CONTRIBUTING.md](https://github.com/marcinkevicius/rmstrokes/blob/main/CONTRIBUTING.md).
 
 ## Usage
 
